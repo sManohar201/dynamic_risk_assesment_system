@@ -27,7 +27,7 @@ def merge_multiple_dataframe():
 
     # use lazy string formating in logging functions
     message_ = str(config_load.INPUT_FOLDER_PATH)
-    logging.info("Reading from %s" % message_)
+    logging.info("Reading from %s", message_)
 
     for file in os.listdir(config_load.INPUT_FOLDER_PATH):
         file_path = os.path.join(config_load.INPUT_FOLDER_PATH, file)
@@ -40,7 +40,8 @@ def merge_multiple_dataframe():
     df_final.drop_duplicates(inplace=True)
 
     logging.info("Saving ingested dataframe")
-    with open(os.path.join(config_load.OUTPUT_DATA_PATH, 'ingestedfiles.txt'), "w") as file:
+    with open(os.path.join(config_load.OUTPUT_DATA_PATH, 
+                'ingestedfiles.txt'), "w", encoding='utf-8') as file:
         file.write(f"Ingestion date: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n")
         file.write("\n".join(ingested_file_names))
 
