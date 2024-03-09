@@ -40,5 +40,5 @@ MODEL_PATH = os.path.join(
 
 # production model store path
 PROD_DEPLOYMENT_PATH = os.path.join(os.path.abspath(
-    './'), 'models', CONFIG['prod_deployment_path'])
+    './'), CONFIG['prod_deployment_path'])
 

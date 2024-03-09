@@ -30,8 +30,8 @@ def train_model():
                     warm_start=False)
     logging.info("Loading and preparing finaldata.csv")
     data_ = pd.read_csv(os.path.join(OUTPUT_DATA_PATH, 'finaldata.csv'))
-    x_data = data_.drop(['corporation'], axis=1)
     y_data = data_.pop('exited')
+    x_data = data_.drop(['corporation'], axis=1)
 
     #fit the logistic regression to your data
     logging.info("Training model")
