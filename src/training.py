@@ -14,13 +14,8 @@ from sklearn.linear_model import LogisticRegression
 
 from config_load import MODEL_PATH, OUTPUT_DATA_PATH
 
-
-# dataset_csv_path = os.path.join(config['output_folder_path']) 
-# model_path = os.path.join(config['output_model_path']) 
-
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
-#################Function for training the model
 def train_model():
     """_summary_
         Train a logistic regression model from accumulated data and 
@@ -35,12 +30,12 @@ def train_model():
                     warm_start=False)
     logging.info("Loading and preparing finaldata.csv")
     data_ = pd.read_csv(os.path.join(OUTPUT_DATA_PATH, 'finaldata.csv'))
-    X = data_.drop(['corporation'], axis=1)
-    y = data_.pop('exited')
+    x_data = data_.drop(['corporation'], axis=1)
+    y_data = data_.pop('exited')
 
     #fit the logistic regression to your data
     logging.info("Training model")
-    model.fit(X, y)
+    model.fit(x_data, y_data)
     #write the trained model to your workspace in a file called trainedmodel.pkl
     savingpath = os.path.join(MODEL_PATH, 'trainedmodel.pkl')
     with open(savingpath, 'wb') as file:
