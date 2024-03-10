@@ -1,2 +1,4 @@
 # ignore .json file
 # config.json
+
+src/__pycache__
