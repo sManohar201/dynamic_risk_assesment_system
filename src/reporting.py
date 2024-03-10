@@ -24,8 +24,9 @@ logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 def plot_confusion_matrix():
     """
-    Calcul
+    Calculate confusion matrix for the production model.
     """
+    logging.info("Calculate confusion matrix for the model prediction.")
     data_frame = pd.read_csv(os.path.join(TEST_DATA_PATH, "testdata.csv"))
     y_gt = data_frame['exited']
     logging.info("Run model predictions on test data.")

@@ -16,14 +16,21 @@ from config_load import OUTPUT_DATA_PATH, TEST_DATA_PATH, PROD_DEPLOYMENT_PATH
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
-def model_predictions():
+def model_predictions(df=None):
     """
     read the deployed model and a test dataset, calculate predictions
     """
-    logging.info("Reading testdata")
-    data_path = os.path.join(TEST_DATA_PATH, 'testdata.csv')
-    dataset = pd.read_csv(data_path)
-    # take model
+    dataset = pd.DataFrame()
+    if df is None:
+        logging.info("Reading testdata")
+        data_path = os.path.join(TEST_DATA_PATH, 'testdata.csv')
+        dataset = pd.read_csv(data_path)
+    elif isinstance(df, pd.DataFrame):
+        logging.info("Reading input dataframe")
+        dataset = df
+    else:
+        logging.error("Expected none or a pandas Dataframe")
+    # load model
     logging.info("Predict with model")
     _ = dataset.pop('exited')
     x = dataset.drop(['corporation'], axis=1)
