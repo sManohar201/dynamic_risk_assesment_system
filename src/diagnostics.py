@@ -39,6 +39,7 @@ def dataframe_summary():
     calculate summary statistics here
     collect dataset
     """
+    logging.info("Calculate dataframe summary")
     datasetpath = os.path.join(OUTPUT_DATA_PATH, 'finaldata.csv')
     dataset = pd.read_csv(datasetpath)
     # select numeric columns
@@ -60,6 +61,7 @@ def missing_data():
     """
     calculate missing data information 
     """
+    logging.info("Calculate missing data information")
     test_data = pd.read_csv(os.path.join(TEST_DATA_PATH, 'testdata.csv'))
 
     results = []
@@ -75,6 +77,7 @@ def execution_time():
     """
     calculate timing of training.py and ingestion.py
     """
+    logging.info("Calculate execution time information")
     results = []
     for process in ['training.py', 'ingestion.py']:
         begin_time = timeit.default_timer()
@@ -90,12 +93,14 @@ def outdated_packages_list():
     """
      Check outdated dependencies
     """
+    logging.info("get outdated packages list.")
     #get a list of updated packages
     outdated_packages = subprocess.check_output([
                 'pip', 'list', '--outdated']).decode(sys.stdout.encoding)
     return str(outdated_packages)
 
 if __name__ == '__main__':
+    logging.info("Run diagnostics!")
     print(model_predictions())
     print(dataframe_summary())
     print(execution_time())
